@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Generator</title>
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500&display=swap" rel="stylesheet">
+
+    <style>
+        input.largeCheckbox {
+            width: 18px;
+            height: 18px;
+            position: relative;
+            top: 3px;
+            right: 4px;
+        }
+
+        .copy-link {
+            --height: 36px;
+
+            font-family: 'Roboto', sans-serif;
+            display: flex;
+            max-width: 250px;
+        }
+
+        .copy-link-input {
+            flex-grow: 1;
+            padding: 0 8px;
+            font-size: 15px;
+            border: 1px solid #ccc;
+            border-right: none;
+            outline: none;
+        }
+
+        .copy-link-input:hover {
+            background: #cccccc;
+        }
+        
+        .copy-link-button {
+            flex-shrink: 0;
+            width: var(--height);
+            height: var(--height);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #dddddd;
+            color: #404040;
+            outline: none;
+            border: 1px solid #cccccc;
+            cursor: pointer;
+        }
+
+        .copy-link-button:active {
+            background-color: #cccccc;
+        }
+
+        .text-23 {
+            font-family: 'Roberto', sans-serif;
+            font-size: 16px;
+        }
+
+        #TITLE {
+            font-family: 'Roberto', sans-serif;
+            font-size: 30px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <H2 id="TITLE">Password Generator</H2>
+    
+    <div class="copy-link">
+        <input type="password" class="copy-link-input" placeholder="Create Password" id="generatedPassword" readonly="" >
+        <button type="button" class="copy-link-button">
+            <span class="material-icons">content_copy</span>
+        </button> <br>
+    </div>
+    
+    <input type="checkbox" id="checkBox" class="largeCheckbox" onclick="revealPassword()" title="Show Password"> 
+    <label for="" class="text-23">Show Password</label>
+    <br>
+    <br>
+    <button id="generateButton" onclick="generator()">Generate</button>
+
+    <script>
+        document.querySelectorAll(".copy-link").forEach(copyLinkContainer => {
+            const inputField = copyLinkContainer.querySelector(".copy-link-input")
+            const copyButton = copyLinkContainer.querySelector(".copy-link-button") 
+            const text =  inputField.value;
+
+            inputField.addEventListener("focus", () => inputField.select())
+
+            copyButton.addEventListener("click", () => {
+                inputField.select(); 
+                navigator.clipboard.writeText(inputField.value);
+            })
+        });
+    </script>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
